@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ..:/var/www/html
+    depends_on:
+      - php
+  php:
+    build:
+      context: ./
+      dockerfile: DockerFile
+    restart: always
+    working_dir: /var/www
+    volumes:
+      - ..:/var/www/
+
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025
+
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: grandblue
+    volumes:
+      - sql:/var/lib/mysql
+
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    depends_on:
+      - mysql
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      - PMA_HOST=mysql
+      - MYSQL_ROOT_PASSWORD=root
+
+volumes:
+  sql:
+

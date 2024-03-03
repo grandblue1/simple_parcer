@@ -1,0 +1,17 @@
+{
+    "name": "grandblue/parcer",
+    "description": "",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Grandblue"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "require": {
+    }
+}
