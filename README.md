@@ -1,4 +1,4 @@
-##Starting Project 
+## Starting Project 
 ```
   git clone https://github.com/grandblue1/simple_parcer.git
   chmod +x ./script.sh
